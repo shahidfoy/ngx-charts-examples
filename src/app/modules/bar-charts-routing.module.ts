@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BarChartsRoutingModule } from './bar-charts-routing.module';
-
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Routes, RouterModule } from '@angular/router';
 
 import { VerticalBarChartComponent } from '../components/BarCharts/vertical-bar-chart/vertical-bar-chart.component';
 import { HorizontalBarChartComponent } from '../components/BarCharts/horizontal-bar-chart/horizontal-bar-chart.component';
@@ -13,31 +10,48 @@ import { StackedHorizontalBarChartComponent } from '../components/BarCharts/stac
 import { NormalizedVerticalBarChartComponent } from '../components/BarCharts/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component';
 import { NormalizedHorizontalBarChartComponent } from '../components/BarCharts/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component';
 
+const routes: Routes = [
+  {
+    path: 'BarCharts',
+    children: [
+      {
+        path: 'verticalBarChart',
+        component: VerticalBarChartComponent
+      },
+      {
+        path: 'groupedVerticalBarChart',
+        component: GroupedVerticalBarChartComponent
+      },
+      {
+        path: 'stackedVerticalBarChart',
+        component: StackedVerticalBarChartComponent
+      },
+      {
+        path: 'normalizedVerticalBarChart',
+        component: NormalizedVerticalBarChartComponent
+      },
+      {
+        path: 'horizontalBarChart',
+        component: HorizontalBarChartComponent
+      },
+      {
+        path: 'groupedHorizontalBarChart',
+        component: GroupedHorizontalBarChartComponent
+      },
+      {
+        path: 'stackedHorizontalBarChart',
+        component: StackedHorizontalBarChartComponent
+      },
+      {
+        path: 'normalizedHorizontalBarChart',
+        component: NormalizedHorizontalBarChartComponent
+      },
+    ]
+  }
+];
+
 @NgModule({
-  declarations: [
-    VerticalBarChartComponent,
-    HorizontalBarChartComponent,
-    GroupedVerticalBarChartComponent,
-    GroupedHorizontalBarChartComponent,
-    StackedVerticalBarChartComponent,
-    StackedHorizontalBarChartComponent,
-    NormalizedVerticalBarChartComponent,
-    NormalizedHorizontalBarChartComponent
-  ],
-  imports: [
-    CommonModule,
-    BarChartsRoutingModule,
-    NgxChartsModule,
-  ],
-  exports: [
-    VerticalBarChartComponent,
-    HorizontalBarChartComponent,
-    GroupedVerticalBarChartComponent,
-    GroupedHorizontalBarChartComponent,
-    StackedVerticalBarChartComponent,
-    StackedHorizontalBarChartComponent,
-    NormalizedVerticalBarChartComponent,
-    NormalizedHorizontalBarChartComponent
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class BarChartsModule { }
+export class BarChartsRoutingModule { }
